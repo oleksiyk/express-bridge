@@ -75,7 +75,7 @@ var expressApp = express();
 
 
 // express-bridge
-var apiBridge = require('express-bridge');
+var apiBridge = require('express-bridge')();
     
 // add request processing function before API handler
 apiBridge.add('auth.authenticate', function (req, res, next) {
