@@ -35,12 +35,13 @@ module.exports = function (_app) {
  *
  * @param {String} username Username (email)
  * @param {String} password User password
+ * @param {String} _scope Scope
  *
  * @apiReturns {Object} User
- * @apiRoute POST /auth/authenticate
+ * @apiRoute POST /auth/authenticate/:username
  */
 
-exports.authenticate = function (username, password) {
+exports.authenticate = function (username, password, _scope) {
     var users = app.collections.users;
   	if (!username || !password) {
         return false;
@@ -95,9 +96,9 @@ app.api = apiBridge.api();
 
 ## HTTP
 -> 
-POST http://localhost/auth/authenticate 
+POST http://localhost/auth/authenticate/joe 
 
-body: username=joe&password=secret
+body: password=secret
 
 -> 
 application/json
