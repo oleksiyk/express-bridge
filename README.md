@@ -79,7 +79,7 @@ var apiBridge = require('express-bridge');
     
 // add request processing function before API handler
 apiBridge.add('auth.authenticate', function (req, res, next) {
-    req.scope = '*';
+    req.scope = '*'; // this will be passed by express-bridge to controller as `_scope` parameter
     next();
 })
 // add file(s) and any additional arguments
@@ -89,7 +89,7 @@ apiBridge.include(__dirname + '/controllers/auth', app);
 expressApp.use(apiBridge.app())
 
 // controllers
-// can be used as: app.api.auth.authenticate(username, password)
+// can be used as: app.api.auth.authenticate(username, password, '*')
 app.api = apiBridge.api();
 ```
 
