@@ -8,7 +8,8 @@ Under development, not even in beta yet.
 
 ## Controller
 _./controllers/auth.js_
-```
+
+```javascript
 /**
  * authentication controller
  *
@@ -54,7 +55,8 @@ exports.authenticate = function (username, password) {
 
 ## Express
 _./app.js:_ 
-```
+
+```javascript
 // … 
 var express = require('express');
 var expressApp = express();
@@ -87,9 +89,12 @@ app.api = apiBridge.api();
 ## HTTP
 -> 
 POST http://localhost/auth/authenticate 
+
 body: username=joe&password=secret
+
 -> 
 application/json
+
 ```json
 {
   username: 'joe',
