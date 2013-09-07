@@ -35,12 +35,13 @@ module.exports = function (_app) {
  *
  * @param {String} username Username (email)
  * @param {String} password User password
+ * @param {String} _scope Scope
  *
  * @apiReturns {Object} User
- * @apiRoute POST /auth/authenticate
+ * @apiRoute POST /auth/authenticate/:username
  */
 
-exports.authenticate = function (username, password) {
+exports.authenticate = function (username, password, _scope) {
     var users = app.collections.users;
   	if (!username || !password) {
         return false;
@@ -78,7 +79,7 @@ var apiBridge = require('express-bridge');
     
 // add request processing function before API handler
 apiBridge.add('auth.authenticate', function (req, res, next) {
-    req.scope = '*';
+    req.scope = '*'; // this will be passed by express-bridge to controller as `_scope` parameter
     next();
 })
 // add file(s) and any additional arguments
@@ -88,16 +89,16 @@ apiBridge.include(__dirname + '/controllers/auth', app);
 expressApp.use(apiBridge.app())
 
 // controllers
-// can be used as: app.api.auth.authenticate(username, password)
+// can be used as: app.api.auth.authenticate(username, password, '*')
 app.api = apiBridge.api();
 ```
 
 
 ## HTTP
 -> 
-POST http://localhost/auth/authenticate 
+POST http://localhost/auth/authenticate/joe 
 
-body: username=joe&password=secret
+body: password=secret
 
 -> 
 application/json
