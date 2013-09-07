@@ -6,6 +6,13 @@ Someday it will also generate AngularJS service/resources to easily connect your
 ## Status
 Under development, not even in beta yet.
 
+## Tags used
+
+- @module
+- @apiRoute
+- @apiReturns
+- @param
+
 ## Controller
 _./controllers/auth.js_
 
