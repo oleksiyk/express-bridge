@@ -1,8 +1,6 @@
 # Express-Bridge
 Creates Express routes using meta tags in code documentation.
 
-Someday it will also generate AngularJS service/resources to easily connect your Node.JS API with AngularJS browser client.
-
 ## Status
 Under development, not even in beta yet.
 
@@ -91,6 +89,11 @@ expressApp.use(apiBridge.app())
 // controllers
 // can be used as: app.api.auth.authenticate(username, password, '*')
 app.api = apiBridge.api();
+
+// return API mapping for clients
+app.get('/_mapping', function(req, res){
+    res.json(apiBridge.mapping());
+})
 ```
 
 
